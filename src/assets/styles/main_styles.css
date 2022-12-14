@@ -1010,6 +1010,7 @@ section
 	width: 20%;
 	height: 380px;
 	cursor: pointer;
+	float: left;
 }
 .product-item::after
 {

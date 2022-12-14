@@ -39,6 +39,13 @@ class NewArrivals extends React.Component{
             productData:productData
         }
     }
+
+    componentDidMount = () => {
+        const script = document.createElement("script");
+        script.src = "../../assets/js/custom.js";
+        script.async = true;
+        document.body.appendChild(script);
+    }
     
     render(){
         const productDetails = this.state.productData;

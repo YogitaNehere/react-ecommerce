@@ -17,6 +17,7 @@ import Footer from './components/Footer/Footer';
 import Home from './containers/Home/Home';
 import ContactUs from './containers/ContactUs/ContactUs';
 import Cart from './containers/Cart/Cart';
+import NotFound from './containers/NotFound/NotFound';
 
 // onAddToCart = () => {
 //   console.log('On add to card click');
@@ -32,7 +33,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path='/cart' element={<Cart />} />
-              {/* <Route path='*' element={} */}
+              <Route path='*' element={<NotFound />} />
             </Routes>
           <Footer />
         </BrowserRouter>
