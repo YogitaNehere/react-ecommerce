@@ -1,7 +1,6 @@
 import React from "react";
 import "./ContactUs.scss";
-// import '../../assets/styles/contact_styles.css';
-// import '../../assets/styles/contact_responsive.css';
+
 import { Link } from "react-router-dom";
 
 class ContactUs extends React.Component{

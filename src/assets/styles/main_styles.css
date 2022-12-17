@@ -1007,10 +1007,11 @@ section
 }
 .product-item
 {
-	width: 20%;
-	height: 380px;
+	width: 23%;
+	height: 400px;
 	cursor: pointer;
 	float: left;
+	margin: 0 10px;
 }
 .product-item::after
 {
@@ -1047,7 +1048,8 @@ section
 }
 .product_image img
 {
-	width: 100%;
+	width: 70%;
+	height: 240px;
 }
 .product_info
 {
