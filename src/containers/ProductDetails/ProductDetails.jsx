@@ -1,39 +1,62 @@
 import React from "react";
 import axios from "axios";
 import './ProductDetails.scss';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import '../../assets/styles/single_styles.css';
+import { useState } from "react";
+import { useEffect } from "react";
+import { CONSTANTS } from "../../utils/constants";
 
+const ProductDetails = () => {
+    const [state, setState] = useState({
+        productDetails: {},
+        showLoader: false
+    });
 
-class ProductDetails extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            productDetails: []
-        };
-    }
+    const params = useParams();
+    console.log(params);
 
-    componentDidMount(){
-        let path = window.location.pathname;
-        path = path.split('/');
-        let productID = path[2];
-        console.log(productID);
+    useEffect(() => {
+        setState({...state, showLoader:true});
         axios
-        .get('https://fakestoreapi.com/products/'+productID)
-        .then((response) => {
-            console.log(response.data);
-            this.setState({productDetails: response.data});
+        .get(CONSTANTS.API_BASE_URL+'products/'+params.id)
+        .then((res) => {
+            setState({
+                ...state,
+                productDetails: res.data,
+                showLoader:false
+            })
         })
-        .catch( (error) => {
-            console.log(error);
-        });
+        .catch((err) => {
+            console.log(err);
+            setState({
+                ...state,
+                showLoader:false
+            });
+        })
+    }, []);
+    //Empty array - componentDidMount() method
 
-    }
+    // componentDidMount(){
+    //     let path = window.location.pathname;
+    //     path = path.split('/');
+    //     let productID = path[2];
+    //     console.log(productID);
+    //     axios
+    //     .get('https://fakestoreapi.com/products/'+productID)
+    //     .then((response) => {
+    //         console.log(response.data);
+    //         this.setState({productDetails: response.data});
+    //     })
+    //     .catch( (error) => {
+    //         console.log(error);
+    //     });
 
-    render(){
-        let productDetails = this.state.productDetails;
-        return(
-            <div className="container single_product_container">
+    // }
+
+    let productDetails = state.productDetails;
+    return (
+        <div className="container single_product_container">
                 <div className="row">
                     <div className="col">
                         <div className="breadcrumbs d-flex flex-row align-items-center">
@@ -107,10 +130,8 @@ class ProductDetails extends React.Component{
                     </div>
                 </div>
             </div>
-
-            </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default ProductDetails;

@@ -1,49 +1,57 @@
 import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+const ProductCard = (props) => {
+    const [state, setState] = useState({
+        qty: 0,
+        availableQty: 5,
+        isOutOfStock: false
+    });
 
-class ProductCard extends React.Component{
-    constructor(props){
-        super();
-        this.state = {
-            qty: 0
-        }
-        // this.qty = 0;
-    }
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    addToCart = (e) => {
+    const addToCart = (e) => {
         e.preventDefault();
         // this.state.qty = this.state.qty+1;
-        this.setState({
-            qty: this.state.qty+1
-        }, ()=> {
-            // console.log(this.state.qty);
+        let newQty = state.qty + 1;
+        let newAvailableQty = state.availableQty - 1;
+        setState({
+            ...state,
+            qty: newQty,
+            availableQty: newAvailableQty,
+            isOutOfStock: newAvailableQty ===0,
         });
+        props.onQtyUpdate('INC');
     };
-
-    render(){
-        const product = this.props.product;
-        // console.log(product);
-        return (
-            <div className="product-item men">
-                <div className="product discount product_filter">
-                    <Link to={"product-details/"+product.id} >
-                        <div className="product_image">
-                            <img src={product.image} alt={product.title} />
-                        </div>
-                        <div className="favorite favorite_left"></div>
-                        {/* {product.discount !=0 ? <div className="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-${product.discount}</span></div>: null} */}
-                        
-                        <div className="product_info">
-                            <h6 className="product_name"><a href="single.html">{product.title}</a></h6>{this.state.qty}
-                            <div className="product_price">${product.price} {product.discountedamt > 0 ?<span>${product.discountedamt}</span>: null}</div>
-                        </div>
-                    </Link>
-                </div>
-                <div className="red_button add_to_cart_button"><a href="#" onClick={this.addToCart} >add to cart</a></div>
-            </div>
-        );
+    const onProductClick = () => {
+        // console.log('product clicked');
+        navigate("product-details/"+product.id, {
+            state: props.product
+        });
     }
+    const product = props.product;
+    return(
+        <div className="product-item men">
+            <div className="product discount product_filter" onClick={onProductClick}>
+                {/* <Link to={"product-details/"+product.id} > */}
+                    <div className="product_image">
+                        <img src={product.image} alt={product.title} />
+                    </div>
+                    <div className="favorite favorite_left"></div>
+                    {/* {product.discount !=0 ? <div className="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-${product.discount}</span></div>: null} */}
+                    
+                    <div className="product_info">
+                        <h6 className="product_name"><a href="single.html">{product.title}</a></h6>{state.qty}
+                        <div className="product_price">${product.price} {product.discountedamt > 0 ?<span>${product.discountedamt}</span>: null}</div>
+                    </div>
+                {/* </Link> */}
+            </div>
+            <div className="red_button add_to_cart_button"><a href="#" onClick={addToCart} >add to cart</a></div>
+        </div>
+    );
 }
 
 export default ProductCard;
