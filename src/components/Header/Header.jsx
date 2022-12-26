@@ -1,13 +1,8 @@
 import React from "react";
 import Navigation from "../Navigation/Navigation";
 
-class Header extends React.Component{
-    constructor(){
-        super();
-    }
-
-    render(){
-        return(
+const Header = () => {
+    return(
         // <div className="super_container">
         <div>
         <header className="header trans_300">
@@ -74,8 +69,5 @@ class Header extends React.Component{
         <div className="fs_menu_overlay"></div>
         </div>
         );
-
-    }
 }
-
 export default Header;

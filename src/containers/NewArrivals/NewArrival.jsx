@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import product_1 from '../../assets/images/product_1.png';
 import product_2 from '../../assets/images/product_2.png';
 import product_3 from '../../assets/images/product_3.png';
@@ -32,23 +33,12 @@ const productData =
     }
 ];
 
-class NewArrivals extends React.Component{
-    constructor(props){
-        super();
-        this.state = {
-            productData:productData
-        }
-    }
+const NewArrivals = () => {
+    const [state, setState] = useEffect({
+        productData: productData,
+    });
 
-    componentDidMount = () => {
-        const script = document.createElement("script");
-        script.src = "../../assets/js/custom.js";
-        script.async = true;
-        document.body.appendChild(script);
-    }
-    
-    render(){
-        const productDetails = this.state.productData;
+    const productDetails = state.productData;
         console.log(productDetails);
         return(
             <div className="new_arrivals">
@@ -89,7 +79,5 @@ class NewArrivals extends React.Component{
                 </div>
             </div>
         );
-    }
 }
-
 export default NewArrivals;

@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+
 const ProductCard = (props) => {
     const [state, setState] = useState({
         qty: 0,
@@ -28,7 +29,10 @@ const ProductCard = (props) => {
     };
     const onProductClick = () => {
         // console.log('product clicked');
-        navigate("product-details/"+product.id, {
+        // navigate("product-details/?productID="+product.id, {
+        //     state: props.product
+        // });
+        navigate("product-details", {
             state: props.product
         });
     }

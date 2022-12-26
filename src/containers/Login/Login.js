@@ -6,12 +6,12 @@ const Login = () => {
 
             <form>
                 <div>
-                <label>User Name:</label>
-                <input type="text" id="userName" />
+                    <label htmlFor="username">User Name:</label>
+                    <input type="text" id="username" />
                 </div>
                 <div>
-                <label>Password:</label>
-                <input type="password" id="password" />
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" id="password" />
                 </div>
                 <input type="button" value="Login" />
 

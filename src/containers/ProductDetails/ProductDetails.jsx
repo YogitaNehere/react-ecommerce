@@ -1,11 +1,9 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import axios from "axios";
 import './ProductDetails.scss';
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import '../../assets/styles/single_styles.css';
-import { useState } from "react";
-import { useEffect } from "react";
-import { CONSTANTS } from "../../utils/constants";
+// import { CONSTANTS } from "../../utils/constants";
 
 const ProductDetails = () => {
     const [state, setState] = useState({
@@ -13,28 +11,42 @@ const ProductDetails = () => {
         showLoader: false
     });
 
-    const params = useParams();
-    console.log(params);
+    // const params = useParams();
+    // console.log(params);
+
+    const location = useLocation();
+    // console.log(location);
+    // console.log(location.state);
 
     useEffect(() => {
-        setState({...state, showLoader:true});
-        axios
-        .get(CONSTANTS.API_BASE_URL+'products/'+params.id)
-        .then((res) => {
-            setState({
-                ...state,
-                productDetails: res.data,
-                showLoader:false
-            })
+        setState({
+            ...state, productDetails: location.state
         })
-        .catch((err) => {
-            console.log(err);
-            setState({
-                ...state,
-                showLoader:false
-            });
-        })
-    }, []);
+    },[]);
+
+    // const searchParams = new URLSearchParams(location.search)
+
+    // useEffect(() => {
+    //     setState({...state, showLoader:true});
+    //     //const productId = params.id;
+    //     const productId = searchParams.get('productID')
+    //     axios
+    //     .get(CONSTANTS.API_BASE_URL+'products/'+productId)
+    //     .then((res) => {
+    //         setState({
+    //             ...state,
+    //             productDetails: res.data,
+    //             showLoader:false
+    //         })
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //         setState({
+    //             ...state,
+    //             showLoader:false
+    //         });
+    //     })
+    // }, []);
     //Empty array - componentDidMount() method
 
     // componentDidMount(){
