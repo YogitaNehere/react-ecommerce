@@ -19,6 +19,11 @@ import ContactUs from './containers/ContactUs/ContactUs';
 import Cart from './containers/Cart/Cart';
 import NotFound from './containers/NotFound/NotFound';
 import ProductDetails from './containers/ProductDetails/ProductDetails';
+// import Login from './containers/Login/Login';
+import React, { Suspense } from 'react';
+const Login = React.lazy(() => import('./containers/Login/Login'));
+const Shop = React.lazy(() => import('./containers/Shop/Shop'));
+
 
 // onAddToCart = () => {
 //   console.log('On add to card click');
@@ -26,23 +31,28 @@ import ProductDetails from './containers/ProductDetails/ProductDetails';
 
 function App() {
   return (
-    <div className="App">
+    // <div className="App">
       <div className="super_container">
         <BrowserRouter>
           <Header/>
+          <Suspense fallback={<h1>Loading...</h1>} >
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/contact-us" element={<ContactUs />} />
               <Route path='/cart' element={<Cart />} />
               {/* <Route path='/product-details/:id' element={ <ProductDetails />} /> */}
               <Route path='/product-details' element={<ProductDetails />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/shop' element={<Shop />} />
+              <Route path='/shop:category' element={ <Shop /> } />
               <Route path='*' element={<NotFound />} />
             </Routes>
+          </Suspense>
           <Footer />
         </BrowserRouter>
         
       </div>
-    </div>
+    // </div>
   );
 }
 

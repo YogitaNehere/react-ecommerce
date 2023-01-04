@@ -1,7 +1,23 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
+import { logoutUser, userData } from "../../actions/userActions";
 
 const Header = () => {
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const csLogout = () => {
+        dispatch(logoutUser());
+        if(!user.isLoggedIn){
+            navigate("/");
+        }
+    }
+    
+    // console.log(user);
+    
     return(
         // <div className="super_container">
         <div>
@@ -18,43 +34,47 @@ const Header = () => {
                         <div className="col-md-6 text-right">
                             <div className="top_nav_right">
                                 <ul className="top_nav_menu">
-
-                                    {/* <!-- Currency / Language / My Account --> */}
-
-                                    <li className="currency">
-                                        <a href="#">
-                                            usd
-                                            <i className="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul className="currency_selection">
-                                            <li><a href="#">cad</a></li>
-                                            <li><a href="#">aud</a></li>
-                                            <li><a href="#">eur</a></li>
-                                            <li><a href="#">gbp</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="language">
-                                        <a href="#">
-                                            English
-                                            <i className="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul className="language_selection">
-                                            <li><a href="#">French</a></li>
-                                            <li><a href="#">Italian</a></li>
-                                            <li><a href="#">German</a></li>
-                                            <li><a href="#">Spanish</a></li>
-                                        </ul>
-                                    </li>
+                                    
                                     <li className="account">
                                         <a href="#">
                                             My Account
                                             <i className="fa fa-angle-down"></i>
                                         </a>
-                                        <ul className="account_selection">
-                                            <li><a href="#"><i className="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                            <li><a href="#"><i className="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
-                                        </ul>
+                                        {
+                                            (!user.isLoggedIn) ? (
+                                                <div>
+                                                    <ul className="account_selection">
+                                                        <li>
+                                                            <Link to="/login"><i className="fa fa-sign-in" aria-hidden="true"></i>Sign In</Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link to="/register"><i className="fa fa-user-plus" aria-hidden="true"></i>Register</Link>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            ):
+                                            (
+                                               
+                                                <div>
+                                                    <ul className="account_selection">
+                                                       
+                                                        <li>
+                                                            <Link to="/profile"><i className="fa fa-user-plus" aria-hidden="true"></i>My Profile</Link>
+                                                        </li>
+                                                        <li>
+                                                            <span onClick={csLogout}><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</span>
+                                                        </li>
+                                                    </ul>
+                                                </div> 
+                                            )
+                                        }
+                                        
                                     </li>
+                                    {
+                                        (user.isLoggedIn) && (                                            
+                                            <li className="account1"><div>{user.userData.user !=='' && <span>Welcome {user.userData.user}</span>}</div></li>
+                                        )
+                                    }
                                 </ul>
                             </div>
                         </div>

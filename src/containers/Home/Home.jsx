@@ -1,9 +1,7 @@
 import React from "react";
 import axios from "axios";
+import "./Home.scss";
 import { CONSTANTS } from "../../utils/constants";
-import product_1 from '../../assets/images/product_1.png';
-import product_2 from '../../assets/images/product_2.png';
-import product_3 from '../../assets/images/product_3.png';
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 import MainSlider from '../../components/MainSlider/MainSlider';
@@ -23,34 +21,6 @@ import banner2 from '../../assets/images/banner_2.jpg';
 import banner3 from '../../assets/images/banner_3.jpg';
 import { useState } from "react";
 import { useEffect } from "react";
-
-// const productData = 
-// [
-//     {
-//         category: 'men',
-//         image: product_1,
-//         discount: 20,
-//         title: 'Fujifilm X100T 16 MP Digital Camera (Silver)',
-//         price: 520.00,
-//         discountedamt: 580.00
-//     },
-//     {
-//         category: 'women',
-//         image: product_2,
-//         discount: 0,
-//         title: 'Samsung CF591 Series Curved 27-Inch FHD Monitor',
-//         price: 600.00,
-//         discountedamt: 0
-//     },
-//     {
-//         category: 'women',
-//         image: product_3,
-//         discount: 0,
-//         title: 'Blue Yeti USB Microphone Blackout Edition',
-//         price: 120.00,
-//         discountedamt: 0
-//     }
-// ];
 
 const sliderData = [
     {
@@ -145,7 +115,7 @@ const Home = () => {
                 )
             }
             </Slider>
-            <section className="cart"> Items in Cart: {state.cartItems}</section>
+            {/* <section className="cart"> Items in Cart: {state.cartItems}</section> */}
             
             {/* Banners */}
             <div className="banner">

@@ -1,9 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 
 .App {
-  text-align: center;
+  // text-align: center;
 }
-
+ol, ul {
+  padding-left: 0rem;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

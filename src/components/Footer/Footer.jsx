@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -10,7 +11,7 @@ const Footer = () => {
                             <ul className="footer_nav">
                                 <li><a href="#">Blog</a></li>
                                 <li><a href="#">FAQs</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
+                                <li><Link to="contact-us">Contact Us</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -29,7 +30,7 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="footer_nav_container">
-                            <div className="cr">©2018 All Rights Reserverd. Made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a> &amp; distributed by <a href="https://themewagon.com">ThemeWagon</a></div>
+                            <div className="cr">©{new Date().getFullYear()} All Rights Reserverd.</div>
                         </div>
                     </div>
                 </div>

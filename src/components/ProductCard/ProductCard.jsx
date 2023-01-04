@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { addItemsToCart } from "../../actions/cartActions";
 
 const ProductCard = (props) => {
     const [state, setState] = useState({
@@ -13,6 +14,7 @@ const ProductCard = (props) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
 
     const addToCart = (e) => {
         e.preventDefault();
@@ -25,7 +27,8 @@ const ProductCard = (props) => {
             availableQty: newAvailableQty,
             isOutOfStock: newAvailableQty ===0,
         });
-        props.onQtyUpdate('INC');
+        dispatch(addItemsToCart());
+        // props.onQtyUpdate('INC');
     };
     const onProductClick = () => {
         // console.log('product clicked');
@@ -48,7 +51,8 @@ const ProductCard = (props) => {
                     {/* {product.discount !=0 ? <div className="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-${product.discount}</span></div>: null} */}
                     
                     <div className="product_info">
-                        <h6 className="product_name"><a href="single.html">{product.title}</a></h6>{state.qty}
+                        <h6 className="product_name"><a href="single.html">{product.title}</a></h6>
+                        {/* {state.qty} */}
                         <div className="product_price">${product.price} {product.discountedamt > 0 ?<span>${product.discountedamt}</span>: null}</div>
                     </div>
                 {/* </Link> */}

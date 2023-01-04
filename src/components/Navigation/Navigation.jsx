@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
+    const cart = useSelector((state) => state.cart);
+    // console.log(cart);
     return(
         <div className="main_nav_container">
             <div className="container">
@@ -13,7 +16,7 @@ const Navigation = () => {
                         <nav className="navbar">
                             <ul className="navbar_menu">
                                 <li><Link to="/">Home</Link></li>
-                                <li><a href="#">shop</a></li>
+                                <li><Link to="/shop">Shop</Link></li>
                                 {/* <li><a href="#">promotion</a></li> */}
                                 {/* <li><a href="#">pages</a></li> */}
                                 {/* <li><a href="#">blog</a></li> */}
@@ -25,7 +28,7 @@ const Navigation = () => {
                                 <li className="checkout">
                                     <Link to='/cart'>
                                         <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        <span id="checkout_items" className="checkout_items">2</span>
+                                        <span id="checkout_items" className="checkout_items">{cart.itemCount}</span>
                                     </Link>
                                 </li>
                             </ul>
