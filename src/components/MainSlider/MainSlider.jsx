@@ -12,7 +12,7 @@ const MainSlider = (props) => {
                         <div className="main_slider_content">
                             <h6>{slider.category}</h6>
                             <h1>{slider.title}</h1>
-                            <div className="red_button shop_now_button"><Link to={slider.pageLink}>shop now</Link></div>
+                            <div className="red_button shop_now_button"><Link to="/shop">shop now</Link></div>
                         </div>
                     </div>
                 </div>

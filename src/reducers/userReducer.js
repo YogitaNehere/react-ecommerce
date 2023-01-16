@@ -6,7 +6,7 @@ const initState = {
 }
 
 export default (state = initState, action) => {
-    console.log(action.type);
+    // console.log(action.type);
     switch(action.type){
         case USER_LOGIN_SUCCESSFUL: 
             return {

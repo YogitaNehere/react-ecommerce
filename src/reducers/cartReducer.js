@@ -4,7 +4,7 @@ const initState = {
 }
 
 export default ( state = initState, action) => {
-    console.log('In reducers:'+action.type);
+    // console.log('In reducers:'+action.type);
     switch(action.type){
         case ADD_ITEM:
             return {

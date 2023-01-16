@@ -31,11 +31,13 @@ const ProductCard = (props) => {
         // props.onQtyUpdate('INC');
     };
     const onProductClick = () => {
-        // console.log('product clicked');
+        console.log('product clicked');
+        console.log(props.product);
+
         // navigate("product-details/?productID="+product.id, {
         //     state: props.product
         // });
-        navigate("product-details", {
+        navigate("/product-details", {
             state: props.product
         });
     }

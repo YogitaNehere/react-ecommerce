@@ -6,6 +6,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import "./Shop.scss";
 import loaderImg from "../../assets/images/loader.gif";
 import Category from "../../components/Category/Category";
+import Slider from '@mui/material/Slider';
 
 const Shop = () => {
     const [state, setState] = useState({
@@ -24,27 +25,27 @@ const Shop = () => {
             ...state, showLoader:true
         });
         // Get categories
-        // axios
-        // .get(CONSTANTS.API_BASE_URL+"products/categories")
-        // .then((response) => {
-        //     // console.log(response.data);
-        //     setState({
-        //         ...state,
-        //         categories: response.data
-        //     });
-        // })
-        // .catch((error) => {
-        //     console.log("categories error: "+error);
-        // });
-        //Get products
         axios
-        .get(CONSTANTS.API_BASE_URL+"products")
-        .then((response1) => {
+        .get(CONSTANTS.API_BASE_URL+"products/categories")
+        .then((response) => {
             // console.log(response.data);
             setState({
                 ...state,
-                productList: response1.data,
-                productListCopy: response1.data,
+                categories: response.data
+            });
+        })
+        .catch((error) => {
+            console.log("categories error: "+error);
+        });
+        //Get products
+        axios
+        .get(CONSTANTS.API_BASE_URL+"products")
+        .then((response) => {
+            // console.log(response.data);
+            setState({
+                ...state,
+                productList: response.data,
+                productListCopy: response.data,
                 showLoader:false
             });
         })
@@ -115,6 +116,12 @@ const Shop = () => {
                                     // return (<Category key={category} category={category} productList={productDetails} />);
                                 })
                             }
+							{/* <li><a href="#">Men</a></li>
+							<li className="active"><a href="#"><span><i className="fa fa-angle-double-right" aria-hidden="true"></i></span>Women</a></li>
+							<li><a href="#">Accessories</a></li>
+							<li><a href="#">New Arrivals</a></li>
+							<li><a href="#">Collection</a></li>
+							<li><a href="#">Shop</a></li> */}
 						</ul>
 					</div>
 
@@ -127,6 +134,16 @@ const Shop = () => {
 							{/* <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;" /> */}
 						</p>
 						<div id="slider-range"></div>
+						<Slider
+							size="small"
+							defaultValue={70}
+							aria-label="Default"
+							valueLabelDisplay="auto"
+							marks
+							min={10}
+							max={1100}
+						/>
+						{/* <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" /> */}
 						<div className="filter_button"><span>filter</span></div>
 					</div>
 
