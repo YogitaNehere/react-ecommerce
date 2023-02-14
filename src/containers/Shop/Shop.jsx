@@ -25,18 +25,18 @@ const Shop = () => {
             ...state, showLoader:true
         });
         // Get categories
-        axios
-        .get(CONSTANTS.API_BASE_URL+"products/categories")
-        .then((response) => {
-            // console.log(response.data);
-            setState({
-                ...state,
-                categories: response.data
-            });
-        })
-        .catch((error) => {
-            console.log("categories error: "+error);
-        });
+        // axios
+        // .get(CONSTANTS.API_BASE_URL+"products/categories")
+        // .then((response) => {
+        //     // console.log(response.data);
+        //     setState({
+        //         ...state,
+        //         categories: response.data
+        //     });
+        // })
+        // .catch((error) => {
+        //     console.log("categories error: "+error);
+        // });
         //Get products
         axios
         .get(CONSTANTS.API_BASE_URL+"products")
@@ -109,19 +109,19 @@ const Shop = () => {
 							<h5>Product Category</h5>
 						</div>
 						<ul className="sidebar_categories">
-                            {
+                            {/* {
                                 prodCategories.map((category) => {
                                     let cat = category.charAt(0).toUpperCase() + category.slice(1);
                                     return (<li><span onClick={() => onCategoryClick(category)} id={category}>{cat}</span></li>)
                                     // return (<Category key={category} category={category} productList={productDetails} />);
                                 })
-                            }
-							{/* <li><a href="#">Men</a></li>
+                            } */}
+							<li><a href="#">Men</a></li>
 							<li className="active"><a href="#"><span><i className="fa fa-angle-double-right" aria-hidden="true"></i></span>Women</a></li>
 							<li><a href="#">Accessories</a></li>
 							<li><a href="#">New Arrivals</a></li>
 							<li><a href="#">Collection</a></li>
-							<li><a href="#">Shop</a></li> */}
+							<li><a href="#">Shop</a></li>
 						</ul>
 					</div>
 

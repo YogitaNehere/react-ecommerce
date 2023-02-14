@@ -19,6 +19,7 @@ import ContactUs from "./containers/ContactUs/ContactUs";
 import Cart from "./containers/Cart/Cart";
 import NotFound from "./containers/NotFound/NotFound";
 import ProductDetails from "./containers/ProductDetails/ProductDetails";
+import Register from "./containers/Register/Register";
 // import Login from './containers/Login/Login';
 import React, { Suspense } from "react";
 import Profile from "./containers/Profile/Profile";
@@ -46,6 +47,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/shop:category" element={<Shop />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
